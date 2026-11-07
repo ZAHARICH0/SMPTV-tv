@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SMPTV — эфир</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: #080808; color: #eee;
+           font-family: Arial, sans-serif; display: grid; place-items: center; }
+    main { width: min(100%, 1100px); padding: 16px; }
+    video { display: block; width: 100%; background: #000; aspect-ratio: 16 / 9; }
+    .status { color: #aaa; font-size: 13px; margin-top: 10px; text-align: center; }
+  </style>
+</head>
+<body>
+  <main>
+    <video id="broadcast" autoplay muted playsinline loop controls preload="auto">
+      <source src="/video" type="video/mp4">
+      Ваш браузер не поддерживает HTML5-видео.
+    </video>
+    <div class="status">SMPTV • непрерывное тестовое вещание</div>
+  </main>
+  <script>
+    const player = document.getElementById("broadcast");
+    // Браузеры часто блокируют автозапуск со звуком.
+    // Кнопка управления позволяет зрителю включить звук самостоятельно.
+    player.addEventListener("error", () => {
+      console.error("Не удалось загрузить эфир SMPTV.");
+    });
+  </script>
+</body>
+</html>
